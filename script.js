@@ -19,10 +19,9 @@ function clickNumbers(numbers){
 //convert the value to a number
 function assignValues(evt){
   var x = evt.target.innerHTML;
-  recordingString += x;
   values +=x;
   var output = parseFloat(values);
-  record();
+  record(x);
   console.log (output);
   return output;
 }
@@ -36,8 +35,7 @@ function clickOperators(operator){
 //assign a value to them.
 function assignOperators(evt){
   var x = evt.target.innerHTML;
-  recordingString += x;
-  record();
+  record(x);
 }
 // function assignMemory(evt){
 //
@@ -51,7 +49,7 @@ function assignOperators(evt){
 // clear items entered
 // clear memory
 //show calculations up to now.
-function record(){
-  document.getElementById('tracker').innerHTML = recordingString;
+function record(x){
+  document.getElementById('tracker').innerHTML += x;
 }
 // use API for scientific operations
