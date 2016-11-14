@@ -8,20 +8,27 @@ body{
   color: #FFD700;
   padding: 5px;
   align-items: center;
-
+  text-align: right;
 }
+
 .container{
   width:400px;
   height:600px;
   background-color: #778899;
   margin-top: 10px;
   box-shadow: 5px 5px 5px 5px #696969;
-  display:block;
+}
+.grid{
+  text-align: center;
+  display: inline-block;
+  border-radius: 4px;
+  height: 50px;
+  width: 50px;
+  align-items: center;
+  padding-top: 20px;
 }
 
 .click{
-  margin: 10px;
-  border-radius: 4px;
   cursor: pointer;
   box-shadow: 0px 5px 5px 0px #696969;
 }
