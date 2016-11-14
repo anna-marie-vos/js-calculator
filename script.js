@@ -12,3 +12,5 @@ function mainProgram(){
 // percentage operation
 // clear items entered
 // clear memory
+//show calculations up to now.
+// use API for scientific operations

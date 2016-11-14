@@ -7,10 +7,24 @@ body{
   background-color: #708090;
   color: #FFD700;
   padding: 5px;
-}
+  align-items: center;
 
+}
 .container{
+  width:400px;
+  height:600px;
   background-color: #778899;
   margin-top: 10px;
   box-shadow: 5px 5px 5px 5px #696969;
+  display:block;
+}
+
+.click{
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 5px 5px 0px #696969;
+}
+.click:hover{
+  box-shadow: 0px 10px 20px 0px #696969;
 }
