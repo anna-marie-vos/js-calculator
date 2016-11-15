@@ -4,7 +4,7 @@ function mainProgram(){
 
 clickNumbers(document.getElementsByClassName('inputs')[0].children);
 clickOperators(document.getElementsByClassName('operators')[0].children);
-document.getElementById('equal').addEventListener('click', performcCalc);
+document.getElementById('equal').addEventListener('click', assignEqual);
 document.getElementById('clearAll').addEventListener('click',clearAll);
 }
 var values ="";
@@ -24,6 +24,11 @@ function assignValues(evt){
   values +=x;
   record(x);
 }
+function recordValue(){
+  recordedEntries.push(parseFloat(values));
+  console.log(values);
+  resetValue();
+}
 //reset value
 function resetValue(){
   values = "";
@@ -37,17 +42,25 @@ function clickOperators(operator){
 //keep record of all the operators
 //assign a value to them.
 function assignOperators(evt){
-  recordedEntries.push(parseFloat(values));
-  resetValue();
-  record(evt.target.innerHTML);
+  recordValue();
   recordedEntries.push(evt.target.id);
+  record(evt.target.innerHTML);
+  console.log(values);
+  console.log(recordedEntries);
+}
+function assignEqual(evt){
+  recordValue();
+  record(evt.target.innerHTML);
+  answer(recordedEntries[0]);
+
+  performcCalc();
 }
 //when the answer button is clicked perform find the operation and
 // use the values before and after it to do the calculation.
 // send the answer to the html file.
 // and assign it to the last last number that was used.
 function performcCalc(){
-  recordedEntries.push(parseFloat(values));
+  console.log(recordedEntries);
   var y = 0;
   for(var x = 0; x< recordedEntries.length;x++){
     switch(recordedEntries[x]){
@@ -77,15 +90,17 @@ function performcCalc(){
         recordedEntries[x+1] = y;
         break;
       default:
+      y = recordedEntries[x];
     }
   }
-  recordedEntries = [];
+
   values = y;
   document.getElementById('tracker').innerHTML =y;
+  recordedEntries = [];
 }
 
 function clearAll(){
-  value = ""
+  values = ""
   recordedEntries = [];
   document.getElementById('tracker').innerHTML = "";
   document.getElementById('answer').innerHTML = "0";
