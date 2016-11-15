@@ -8,7 +8,7 @@ document.getElementById('equal').addEventListener('click', performcCalc);
 }
 var values ="";
 var enteredNumbers=[];
-var enterOperator=[];
+
 // take input from all buttons
 //01: add event listeners for all numbers
 function clickNumbers(numbers){
@@ -22,7 +22,6 @@ function assignValues(evt){
   var x = evt.target.innerHTML;
   values +=x;
   record(x);
-  console.log(values);
 }
 //reset value
 function resetValue(){
@@ -41,43 +40,48 @@ function assignOperators(evt){
   resetValue();
   record(evt.target.innerHTML);
   enteredNumbers.push(evt.target.id);
-  console.log(enteredNumbers)
 }
 
 function performcCalc(){
   enteredNumbers.push(parseFloat(values));
-  console.log(enteredNumbers);
+  var y = 0;
   for(var x = 0; x< enteredNumbers.length;x++){
-    var y = 0;
     switch(enteredNumbers[x]){
       case 'plus':
         y = enteredNumbers[x-1] + enteredNumbers[x+1];
         answer(y);
         enteredNumbers[x+1] = y;
+        console.log(enteredNumbers);
         break;
       case 'minus':
         y = enteredNumbers[x-1] - enteredNumbers[x+1];
         answer(y);
         enteredNumbers[x+1] = y;
+        console.log(enteredNumbers);
         break;
       case 'divide':
         y = enteredNumbers[x-1] / enteredNumbers[x+1];
         answer(y);
         enteredNumbers[x+1] = y;
+        console.log(enteredNumbers);
         break;
       case 'multiply':
         y = enteredNumbers[x-1] * enteredNumbers[x+1];
         answer(y);
         enteredNumbers[x+1] = y;
+        console.log(enteredNumbers);
         break;
       case 'percentage':
         y = enteredNumbers[x-1] *100;
         answer(y);
         enteredNumbers[x+1] = y;
+        console.log(enteredNumbers);
         break;
       default:
     }
   }
+  enteredNumbers = [];
+  values = y;
 }
 // function assignMemory(evt){
 //
