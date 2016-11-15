@@ -6,6 +6,8 @@ clickNumbers(document.getElementsByClassName('inputs')[0].children);
 clickOperators(document.getElementsByClassName('operators')[0].children);
 document.getElementById('equal').addEventListener('click', assignEqual);
 document.getElementById('clearAll').addEventListener('click',clearAll);
+document.getElementById('clearTemp').addEventListener('click',clearPrevious);
+
 }
 var values ="";
 var recordedEntries=[];
@@ -109,6 +111,10 @@ function clearAll(){
   recordedEntries = [];
   document.getElementById('tracker').innerHTML = "";
   document.getElementById('answer').innerHTML = "0";
+}
+function clearPrevious(){
+  values ="";
+  recordedEntries.slice(-1,1);
 }
 //add the either the value or operator the html tracker
 function record(x){
