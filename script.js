@@ -11,6 +11,7 @@ document.getElementById('clearTemp').addEventListener('click',clearPrevious);
 }
 var values ="";
 var recordedEntries=[];
+var keepOperator ="";
 
 // take input from all buttons
 //01: add event listeners for all numbers
@@ -43,13 +44,20 @@ function clickOperators(operator){
     operator[a].addEventListener('click',assignOperators);
   }
 }
+function recordOperator(){
+  recordedEntries.push(keepOperator);
+}
+function clearOperator(){
+ keepOperator = ""
+}
 //keep record of all the operators
 // record the last values
 //add the operator to the recordedEntries
 //and keep record of the operation
 function assignOperators(evt){
   recordValue();
-  recordedEntries.push(evt.target.id);
+  keepOperator = evt.target.id;
+  recordOperator();
   record(evt.target.innerHTML);
 }
 //record the last values
@@ -107,6 +115,7 @@ function performcCalc(){
 //clear the recordedEntries
 //reset the html tracker and answer
 function clearAll(){
+
   values = ""
   recordedEntries = [];
   document.getElementById('tracker').innerHTML = "";
@@ -114,7 +123,13 @@ function clearAll(){
 }
 function clearPrevious(){
   values ="";
-  recordedEntries.slice(-1,1);
+  var x = document.getElementById('tracker').innerHTML;
+  x = x.slice(0,-1);
+  console.log(recordedEntries);
+  document.getElementById('tracker').innerHTML = x;
+
+  recordedEntries.pop();
+  console.log(recordedEntries);
 }
 //add the either the value or operator the html tracker
 function record(x){
