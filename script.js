@@ -53,6 +53,28 @@ function performcCalc(){
       case 'plus':
         y = enteredNumbers[x-1] + enteredNumbers[x+1];
         answer(y);
+        enteredNumbers[x+1] = y;
+        break;
+      case 'minus':
+        y = enteredNumbers[x-1] - enteredNumbers[x+1];
+        answer(y);
+        enteredNumbers[x+1] = y;
+        break;
+      case 'divide':
+        y = enteredNumbers[x-1] / enteredNumbers[x+1];
+        answer(y);
+        enteredNumbers[x+1] = y;
+        break;
+      case 'multiply':
+        y = enteredNumbers[x-1] * enteredNumbers[x+1];
+        answer(y);
+        enteredNumbers[x+1] = y;
+        break;
+      case 'percentage':
+        y = enteredNumbers[x-1] *100;
+        answer(y);
+        enteredNumbers[x+1] = y;
+        break;
       default:
     }
   }
