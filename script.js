@@ -5,9 +5,10 @@ function mainProgram(){
 clickNumbers(document.getElementsByClassName('inputs')[0].children);
 clickOperators(document.getElementsByClassName('operators')[0].children);
 document.getElementById('equal').addEventListener('click', performcCalc);
+document.getElementById('clearAll').addEventListener('click',clearAll);
 }
 var values ="";
-var enteredNumbers=[];
+var recordedEntries=[];
 
 // take input from all buttons
 //01: add event listeners for all numbers
@@ -36,62 +37,60 @@ function clickOperators(operator){
 //keep record of all the operators
 //assign a value to them.
 function assignOperators(evt){
-  enteredNumbers.push(parseFloat(values));
+  recordedEntries.push(parseFloat(values));
   resetValue();
   record(evt.target.innerHTML);
-  enteredNumbers.push(evt.target.id);
+  recordedEntries.push(evt.target.id);
 }
-
+//when the answer button is clicked perform find the operation and
+// use the values before and after it to do the calculation.
+// send the answer to the html file.
+// and assign it to the last last number that was used.
 function performcCalc(){
-  enteredNumbers.push(parseFloat(values));
+  recordedEntries.push(parseFloat(values));
   var y = 0;
-  for(var x = 0; x< enteredNumbers.length;x++){
-    switch(enteredNumbers[x]){
+  for(var x = 0; x< recordedEntries.length;x++){
+    switch(recordedEntries[x]){
       case 'plus':
-        y = enteredNumbers[x-1] + enteredNumbers[x+1];
+        y = recordedEntries[x-1] + recordedEntries[x+1];
         answer(y);
-        enteredNumbers[x+1] = y;
-        console.log(enteredNumbers);
+        recordedEntries[x+1] = y;
         break;
       case 'minus':
-        y = enteredNumbers[x-1] - enteredNumbers[x+1];
+        y = recordedEntries[x-1] - recordedEntries[x+1];
         answer(y);
-        enteredNumbers[x+1] = y;
-        console.log(enteredNumbers);
+        recordedEntries[x+1] = y;
         break;
       case 'divide':
-        y = enteredNumbers[x-1] / enteredNumbers[x+1];
+        y = recordedEntries[x-1] / recordedEntries[x+1];
         answer(y);
-        enteredNumbers[x+1] = y;
-        console.log(enteredNumbers);
+        recordedEntries[x+1] = y;
         break;
       case 'multiply':
-        y = enteredNumbers[x-1] * enteredNumbers[x+1];
+        y = recordedEntries[x-1] * recordedEntries[x+1];
         answer(y);
-        enteredNumbers[x+1] = y;
-        console.log(enteredNumbers);
+        recordedEntries[x+1] = y;
         break;
       case 'percentage':
-        y = enteredNumbers[x-1] *100;
+        y = recordedEntries[x-1] *100;
         answer(y);
-        enteredNumbers[x+1] = y;
-        console.log(enteredNumbers);
+        recordedEntries[x+1] = y;
         break;
       default:
     }
   }
-  enteredNumbers = [];
+  recordedEntries = [];
   values = y;
+  document.getElementById('tracker').innerHTML =y;
 }
-// function assignMemory(evt){
-//
-// }
-// subtract operation
-// addition operation
-// subtraction operation
-// division operation
-// answer operation
-// percentage operation
+
+function clearAll(){
+  value = ""
+  recordedEntries = [];
+  document.getElementById('tracker').innerHTML = "";
+  document.getElementById('answer').innerHTML = "0";
+}
+
 // clear items entered
 // clear memory
 //show calculations up to now.
