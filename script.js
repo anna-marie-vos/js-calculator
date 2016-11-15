@@ -2,13 +2,13 @@ $(document).ready(mainProgram);
 
 function mainProgram(){
 
-clickNumbers(document.getElementsByClassName('inputs')[0].children)
-clickOperators(document.getElementsByClassName('operators')[0].children)
-
+clickNumbers(document.getElementsByClassName('inputs')[0].children);
+clickOperators(document.getElementsByClassName('operators')[0].children);
+document.getElementById('equal').addEventListener('click', performcCalc);
 }
-var recordingString="";
 var values ="";
-var trackingNumbers=[];
+var enteredNumbers=[];
+var enterOperator=[];
 // take input from all buttons
 //01: add event listeners for all numbers
 function clickNumbers(numbers){
@@ -37,12 +37,25 @@ function clickOperators(operator){
 //keep record of all the operators
 //assign a value to them.
 function assignOperators(evt){
-  trackingNumbers.push(parseFloat(values));
+  enteredNumbers.push(parseFloat(values));
   resetValue();
-  console.log(trackingNumbers);
-  var x = evt.target.innerHTML;
-  record(x);
-  console.log(x);
+  record(evt.target.innerHTML);
+  enteredNumbers.push(evt.target.id);
+  console.log(enteredNumbers)
+}
+
+function performcCalc(){
+  enteredNumbers.push(parseFloat(values));
+  console.log(enteredNumbers);
+  for(var x = 0; x< enteredNumbers.length;x++){
+    var y = 0;
+    switch(enteredNumbers[x]){
+      case 'plus':
+        y = enteredNumbers[x-1] + enteredNumbers[x+1];
+        answer(y);
+      default:
+    }
+  }
 }
 // function assignMemory(evt){
 //
@@ -58,5 +71,8 @@ function assignOperators(evt){
 //show calculations up to now.
 function record(x){
   document.getElementById('tracker').innerHTML += x;
+}
+function answer(x){
+  document.getElementById('answer').innerHTML = x;
 }
 // use API for scientific operations
