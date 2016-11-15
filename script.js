@@ -7,7 +7,8 @@ clickOperators(document.getElementsByClassName('operators')[0].children)
 
 }
 var recordingString="";
-var values = " ";
+var values ="";
+var trackingNumbers=[];
 // take input from all buttons
 //01: add event listeners for all numbers
 function clickNumbers(numbers){
@@ -20,10 +21,12 @@ function clickNumbers(numbers){
 function assignValues(evt){
   var x = evt.target.innerHTML;
   values +=x;
-  var output = parseFloat(values);
   record(x);
-  console.log (output);
-  return output;
+  console.log(values);
+}
+//reset value
+function resetValue(){
+  values = "";
 }
 //add event listeners for the operators
 function clickOperators(operator){
@@ -34,8 +37,12 @@ function clickOperators(operator){
 //keep record of all the operators
 //assign a value to them.
 function assignOperators(evt){
+  trackingNumbers.push(parseFloat(values));
+  resetValue();
+  console.log(trackingNumbers);
   var x = evt.target.innerHTML;
   record(x);
+  console.log(x);
 }
 // function assignMemory(evt){
 //
