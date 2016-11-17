@@ -129,7 +129,6 @@ function clearPrevious(){
 
   recordedEntries.pop();
   values = y.slice(0,-1);
-  console.log(recordedEntries);
 }
 //add the either the value or operator the html tracker
 function record(x){
