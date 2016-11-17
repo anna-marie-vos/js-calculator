@@ -115,20 +115,20 @@ function performcCalc(){
 //clear the recordedEntries
 //reset the html tracker and answer
 function clearAll(){
-
   values = ""
   recordedEntries = [];
   document.getElementById('tracker').innerHTML = "";
   document.getElementById('answer').innerHTML = "0";
 }
 function clearPrevious(){
-  values ="";
+  var y = values;
+  recordValue();
   var x = document.getElementById('tracker').innerHTML;
   x = x.slice(0,-1);
-  console.log(recordedEntries);
   document.getElementById('tracker').innerHTML = x;
 
   recordedEntries.pop();
+  values = y.slice(0,-1);
   console.log(recordedEntries);
 }
 //add the either the value or operator the html tracker
