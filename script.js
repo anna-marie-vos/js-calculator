@@ -31,8 +31,12 @@ function assignValues(evt){
 //and addit to the recordedEntries array.
 //and reset the values string for the new number.
 function recordValue(){
+  if(values ==""){
+    return;
+  }else{
   recordedEntries.push(parseFloat(values));
   resetValue();
+  }
 }
 //reset the values string for a new string to be added
 function resetValue(){
@@ -55,16 +59,19 @@ function clearOperator(){
 //add the operator to the recordedEntries
 //and keep record of the operation
 function assignOperators(evt){
+  addingToFirstString();
   recordValue();
   keepOperator = evt.target.id;
   recordOperator();
   record(evt.target.innerHTML);
+  console.log(recordedEntries);
 }
 //record the last values
 //record the last operation
 // display the answer
 //and perform a calculation
 function assignEqual(evt){
+  addingToFirstString();
   recordValue();
   record(evt.target.innerHTML);
   answer(recordedEntries[0]);
@@ -121,14 +128,21 @@ function clearAll(){
   document.getElementById('answer').innerHTML = "0";
 }
 function clearPrevious(){
-  var y = values;
-  recordValue();
-  var x = document.getElementById('tracker').innerHTML;
-  x = x.slice(0,-1);
-  document.getElementById('tracker').innerHTML = x;
+    var y = values.toString();
+    recordValue();
+    var x = document.getElementById('tracker').innerHTML;
+    x = x.slice(0,-1);
+    document.getElementById('tracker').innerHTML = x;
+    recordedEntries.pop();
+    values = y.slice(0,-1);
+}
 
-  recordedEntries.pop();
-  values = y.slice(0,-1);
+function addingToFirstString(){
+  if(recordedEntries.length ===1){
+    values = document.getElementById('tracker').innerHTML;
+  }else{
+    return;
+  }
 }
 //add the either the value or operator the html tracker
 function record(x){
