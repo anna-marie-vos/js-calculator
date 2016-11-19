@@ -55,16 +55,15 @@ function assignEqual(evt){
   addingToFirstString();
   recordValue();
   if(isNaN(recordedEntries[0])){
-    answer(recordedEntries[1]);
-
+    values = recordedEntries[1].toString();
   } else{
-  answer(recordedEntries[0]);
+  values = recordedEntries[1].toString();
 }
   performcCalc();
 }
 
 function performcCalc(){
-  var y = document.getElementById('answer').innerHTML;
+  var y = values;
   for(var x = 0; x< recordedEntries.length;x++){
     if(x ===0 && isNaN(recordedEntries[0])){
       x = 1;
@@ -101,8 +100,8 @@ function performcCalc(){
       }
     }
   }
-  values = y;
-  document.getElementById('tracker').innerHTML = values;
+  answer(y);
+  document.getElementById('tracker').innerHTML = y;
   recordedEntries = [];
 }
 
