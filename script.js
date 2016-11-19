@@ -73,9 +73,15 @@ function assignOperators(evt){
 function assignEqual(evt){
   addingToFirstString();
   recordValue();
-  record(evt.target.innerHTML);
+  if(isNaN(recordedEntries[0])){
+    answer(recordedEntries[1]);
+
+  } else{
   answer(recordedEntries[0]);
+}
   performcCalc();
+  values = document.getElementById('answer').innerHTML;
+  document.getElementById('tracker').innerHTML = values;
 }
 //when the equal button is clicked perform find the operation and
 // use the values before and after it in the array to do the calculation.
@@ -84,6 +90,9 @@ function assignEqual(evt){
 function performcCalc(){
   var y = 0;
   for(var x = 0; x< recordedEntries.length;x++){
+    if(x ===0 && isNaN(recordedEntries[0])){
+      x = 1;
+    }else{
     switch(recordedEntries[x]){
       case 'plus':
         y = recordedEntries[x-1] + recordedEntries[x+1];
@@ -94,6 +103,7 @@ function performcCalc(){
         y = recordedEntries[x-1] - recordedEntries[x+1];
         answer(y);
         recordedEntries[x+1] = y;
+        console.log(y);
         break;
       case 'divide':
         y = recordedEntries[x-1] / recordedEntries[x+1];
@@ -112,9 +122,9 @@ function performcCalc(){
         break;
       default:
       y = recordedEntries[x];
+      }
     }
   }
-  document.getElementById('tracker').innerHTML =y;
   values = y;
   recordedEntries = [];
 }
