@@ -124,8 +124,6 @@ function clearPrevious(){
 function addingToFirstString(){
   if(recordedEntries.length ===1){
     values = document.getElementById('tracker').innerHTML;
-  }else{
-    return;
   }
 }
 function newRecording(x){
