@@ -31,9 +31,14 @@ function assignValues(evt){
 function recordValue(){
   if(values ==""){
     return;
-  }else{
+  }
   recordedEntries.push(parseFloat(values));
   values = "";
+}
+function addingToFirstString(){
+  console.log(recordedEntries.length);
+  if(recordedEntries.length ===0){
+    values = document.getElementById('tracker').innerHTML;
   }
 }
 
@@ -55,9 +60,9 @@ function assignEqual(evt){
   addingToFirstString();
   recordValue();
   if(isNaN(recordedEntries[0])){
-    values = recordedEntries[1].toString();
+    values = recordedEntries[1];
   } else{
-  values = recordedEntries[1].toString();
+  values = recordedEntries[0];
 }
   performcCalc();
 }
@@ -121,11 +126,7 @@ function clearPrevious(){
     values = y.slice(0,-1);
 }
 
-function addingToFirstString(){
-  if(recordedEntries.length ===1){
-    values = document.getElementById('tracker').innerHTML;
-  }
-}
+
 function newRecording(x){
   document.getElementById('tracker').innerHTML = x;
 }
