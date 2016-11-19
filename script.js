@@ -11,7 +11,7 @@ document.getElementById('clearTemp').addEventListener('click',clearPrevious);
 }
 var values ="";
 var recordedEntries=[];
-var keepOperator ="";
+
 
 // take input from all buttons
 //01: add event listeners for all numbers
@@ -33,12 +33,8 @@ function recordValue(){
     return;
   }else{
   recordedEntries.push(parseFloat(values));
-  resetValue();
-  }
-}
-
-function resetValue(){
   values = "";
+  }
 }
 
 function clickOperators(operator){
@@ -46,21 +42,14 @@ function clickOperators(operator){
     operator[a].addEventListener('click',assignOperators);
   }
 }
-function recordOperator(){
-  recordedEntries.push(keepOperator);
-}
-function clearOperator(){
- keepOperator = ""
-}
 
 function assignOperators(evt){
   addingToFirstString();
   recordValue();
-  keepOperator = evt.target.id;
-  recordOperator();
+  recordedEntries.push(evt.target.id);
   record(evt.target.innerHTML);
-  console.log(recordedEntries);
 }
+
 
 function assignEqual(evt){
   addingToFirstString();
@@ -72,12 +61,10 @@ function assignEqual(evt){
   answer(recordedEntries[0]);
 }
   performcCalc();
-  values = document.getElementById('answer').innerHTML;
-  document.getElementById('tracker').innerHTML = values;
 }
 
 function performcCalc(){
-  var y = 0;
+  var y = document.getElementById('answer').innerHTML;
   for(var x = 0; x< recordedEntries.length;x++){
     if(x ===0 && isNaN(recordedEntries[0])){
       x = 1;
@@ -115,6 +102,7 @@ function performcCalc(){
     }
   }
   values = y;
+  document.getElementById('tracker').innerHTML = values;
   recordedEntries = [];
 }
 
