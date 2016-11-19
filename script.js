@@ -101,22 +101,22 @@ function performcCalc(){
     }
   }
   answer(y);
-  document.getElementById('tracker').innerHTML = y;
+  newRecording(y);
   recordedEntries = [];
 }
 
 function clearAll(){
   values = ""
   recordedEntries = [];
-  document.getElementById('tracker').innerHTML = "";
-  document.getElementById('answer').innerHTML = "0";
+  newRecording("");
+  answer('0');
 }
 function clearPrevious(){
     var y = values.toString();
     recordValue();
     var x = document.getElementById('tracker').innerHTML;
     x = x.slice(0,-1);
-    document.getElementById('tracker').innerHTML = x;
+    newRecording(x);
     recordedEntries.pop();
     values = y.slice(0,-1);
 }
@@ -128,7 +128,9 @@ function addingToFirstString(){
     return;
   }
 }
-
+function newRecording(x){
+  document.getElementById('tracker').innerHTML = x;
+}
 function record(x){
   document.getElementById('tracker').innerHTML += x;
 }
