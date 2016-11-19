@@ -27,9 +27,7 @@ function assignValues(evt){
   values +=x;
   record(x);
 }
-//convert the value string to a value.
-//and addit to the recordedEntries array.
-//and reset the values string for the new number.
+
 function recordValue(){
   if(values ==""){
     return;
@@ -38,11 +36,11 @@ function recordValue(){
   resetValue();
   }
 }
-//reset the values string for a new string to be added
+
 function resetValue(){
   values = "";
 }
-//add event listeners for the operators
+
 function clickOperators(operator){
   for(var a =0; a<operator.length; a++){
     operator[a].addEventListener('click',assignOperators);
@@ -54,10 +52,7 @@ function recordOperator(){
 function clearOperator(){
  keepOperator = ""
 }
-//keep record of all the operators
-// record the last values
-//add the operator to the recordedEntries
-//and keep record of the operation
+
 function assignOperators(evt){
   addingToFirstString();
   recordValue();
@@ -66,10 +61,7 @@ function assignOperators(evt){
   record(evt.target.innerHTML);
   console.log(recordedEntries);
 }
-//record the last values
-//record the last operation
-// display the answer
-//and perform a calculation
+
 function assignEqual(evt){
   addingToFirstString();
   recordValue();
@@ -83,10 +75,7 @@ function assignEqual(evt){
   values = document.getElementById('answer').innerHTML;
   document.getElementById('tracker').innerHTML = values;
 }
-//when the equal button is clicked perform find the operation and
-// use the values before and after it in the array to do the calculation.
-// send the answer to the html file.
-// and assign it to the last last number that was used.
+
 function performcCalc(){
   var y = 0;
   for(var x = 0; x< recordedEntries.length;x++){
@@ -128,9 +117,7 @@ function performcCalc(){
   values = y;
   recordedEntries = [];
 }
-//clear the values
-//clear the recordedEntries
-//reset the html tracker and answer
+
 function clearAll(){
   values = ""
   recordedEntries = [];
@@ -154,7 +141,7 @@ function addingToFirstString(){
     return;
   }
 }
-//add the either the value or operator the html tracker
+
 function record(x){
   document.getElementById('tracker').innerHTML += x;
 }
