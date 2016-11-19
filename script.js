@@ -37,7 +37,7 @@ function recordValue(){
 }
 function addingToFirstString(){
   console.log(recordedEntries.length);
-  if(recordedEntries.length ===0){
+  if(recordedEntries.length ===1){
     values = document.getElementById('tracker').innerHTML;
   }
 }
@@ -59,14 +59,16 @@ function assignOperators(evt){
 function assignEqual(evt){
   addingToFirstString();
   recordValue();
+  checkFirstValue();
+  performcCalc();
+}
+function checkFirstValue(){
   if(isNaN(recordedEntries[0])){
     values = recordedEntries[1];
   } else{
   values = recordedEntries[0];
 }
-  performcCalc();
 }
-
 function performcCalc(){
   var y = values;
   for(var x = 0; x< recordedEntries.length;x++){
